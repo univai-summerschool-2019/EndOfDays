@@ -1,0 +1,592 @@
+% Created 2019-06-21 Fri 18:55
+% Intended LaTeX compiler: xelatex
+\documentclass[12pt,a4paper,oneside,headinclude]{scrartcl}
+\usepackage{graphicx}
+\usepackage{grffile}
+\usepackage{longtable}
+\usepackage{wrapfig}
+\usepackage{rotating}
+\usepackage[normalem]{ulem}
+\usepackage{amsmath}
+\usepackage{textcomp}
+\usepackage{amssymb}
+\usepackage{capt-of}
+\usepackage{hyperref}
+\usepackage{minted}
+\PassOptionsToPackage{unicode=true}{hyperref}
+\PassOptionsToPackage{hyphens}{url}
+\PassOptionsToPackage{dvipsnames,svgnames*,x11names*,table}{xcolor}
+\usepackage{lmodern}
+\usepackage{amssymb,amsmath}
+\usepackage{physics}
+\usepackage{ifxetex,ifluatex}
+\usepackage{fixltx2e} % provides \textsubscript
+\ifnum 0\ifxetex 1\fi\ifluatex 1\fi=0 % if pdftex
+\usepackage[T1]{fontenc}
+\usepackage[utf8]{inputenc}
+\usepackage{textcomp} % provides euro and other symbols
+\else % if luatex or xelatex
+\usepackage{unicode-math}
+\defaultfontfeatures{Ligatures=TeX,Scale=MatchLowercase}
+\fi
+% use upquote if available, for straight quotes in verbatim environments
+\IfFileExists{upquote.sty}{\usepackage{upquote}}{}
+% use microtype if available
+\IfFileExists{microtype.sty}{%
+\usepackage[]{microtype}
+\UseMicrotypeSet[protrusion]{basicmath} % disable protrusion for tt fonts
+}{}
+\IfFileExists{parskip.sty}{%
+\usepackage{parskip}
+}{% else
+\setlength{\parindent}{0pt}
+\setlength{\parskip}{6pt plus 2pt minus 1pt}
+}
+\usepackage{hyperref}
+\hypersetup{
+pdftitle={ },
+pdfauthor={Author},
+pdfborder={0 0 0},
+breaklinks=true}
+\urlstyle{same}  % don't use monospace font for urls
+\usepackage{longtable,booktabs}
+% Fix footnotes in tables (requires footnote package)
+\IfFileExists{footnote.sty}{\usepackage{footnote}\makesavenoteenv{longtable}}{}
+\usepackage{graphicx,grffile}
+\makeatletter
+\def\maxwidth{\ifdim\Gin@nat@width>\linewidth\linewidth\else\Gin@nat@width\fi}
+\def\maxheight{\ifdim\Gin@nat@height>\textheight\textheight\else\Gin@nat@height\fi}
+\makeatother
+% Scale images if necessary, so that they will not overflow the page
+% margins by default, and it is still possible to overwrite the defaults
+% using explicit options in \includegraphics[width, height, ...]{}
+\setkeys{Gin}{width=\maxwidth,height=\maxheight,keepaspectratio}
+\setlength{\emergencystretch}{3em}  % prevent overfull lines
+\providecommand{\tightlist}{%
+\setlength{\itemsep}{0pt}\setlength{\parskip}{0pt}}
+\setcounter{secnumdepth}{0}
+% Redefines (sub)paragraphs to behave more like sections
+\ifx\paragraph\undefined\else
+\let\oldparagraph\paragraph
+\renewcommand{\paragraph}[1]{\oldparagraph{#1}\mbox{}}
+\fi
+\ifx\subparagraph\undefined\else
+\let\oldsubparagraph\subparagraph
+\renewcommand{\subparagraph}[1]{\oldsubparagraph{#1}\mbox{}}
+\fi
+% Make use of float-package and set default placement for figures to H
+\usepackage{float}
+\floatplacement{figure}{H}
+\numberwithin{figure}{section}
+\numberwithin{equation}{section}
+\numberwithin{table}{section}
+\makeatletter
+\@ifpackageloaded{subfig}{}{\usepackage{subfig}}
+\@ifpackageloaded{caption}{}{\usepackage{caption}}
+\captionsetup[subfloat]{margin=0.5em}
+\AtBeginDocument{%
+\renewcommand*\figurename{Figure}
+\renewcommand*\tablename{Table}
+}
+\AtBeginDocument{%
+\renewcommand*\listfigurename{List of Figures}
+\renewcommand*\listtablename{List of Tables}
+}
+\@ifpackageloaded{float}{}{\usepackage{float}}
+\floatstyle{ruled}
+\@ifundefined{c@chapter}{\newfloat{codelisting}{h}{lop}}{\newfloat{codelisting}{h}{lop}[chapter]}
+\floatname{codelisting}{Listing}
+\makeatother
+\usepackage[dvipsnames,svgnames*,x11names*,table]{xcolor}
+\definecolor{listing-background}{HTML}{F7F7F7}
+\definecolor{listing-rule}{HTML}{B3B2B3}
+\definecolor{listing-numbers}{HTML}{B3B2B3}
+\definecolor{listing-text-color}{HTML}{000000}
+\definecolor{listing-keyword}{HTML}{435489}
+\definecolor{listing-identifier}{HTML}{435489}
+\definecolor{listing-string}{HTML}{00999A}
+\definecolor{listing-comment}{HTML}{8E8E8E}
+\definecolor{listing-javadoc-comment}{HTML}{006CA9}
+\usepackage{pagecolor}
+\usepackage{afterpage}
+\setcounter{tocdepth}{3}
+\usepackage{setspace}
+\setstretch{1.2}
+\usepackage{csquotes}
+\usepackage[font={small,it}]{caption}
+\newcommand{\imglabel}[1]{\textbf{\textit{(#1)}}}
+\definecolor{blockquote-border}{RGB}{221,221,221}
+\definecolor{blockquote-text}{RGB}{119,119,119}
+\usepackage{mdframed}
+\newmdenv[rightline=false,bottomline=false,topline=false,linewidth=3pt,linecolor=blockquote-border,skipabove=\parskip]{customblockquote}
+\renewenvironment{quote}{\begin{customblockquote}\list{}{\rightmargin=0em\leftmargin=0em}%
+\item\relax\color{blockquote-text}\ignorespaces}{\unskip\unskip\endlist\end{customblockquote}}
+\definecolor{heading-color}{RGB}{40,40,40}
+\addtokomafont{section}{\color{heading-color}}
+\usepackage{titling}
+\renewcommand{\arraystretch}{1.3} % table spacing
+\definecolor{table-row-color}{HTML}{F5F5F5}
+\rowcolors{3}{}{table-row-color!100}
+% Reset rownum counter so that each table starts with the same row color
+\let\oldlongtable\longtable
+\let\endoldlongtable\endlongtable
+\renewenvironment{longtable}{\oldlongtable} {
+\endoldlongtable
+\global\rownum=0\relax}
+\setlength{\parindent}{0pt}
+\setlength{\parskip}{6pt plus 2pt minus 1pt}
+\setlength{\emergencystretch}{3em}  % prevent overfull lines
+\usepackage{fancyhdr}
+\pagestyle{fancy}
+\fancyhead{}
+\fancyfoot{}
+\lhead{Notes and Bits}
+\chead{}
+\rhead{\today}
+\lfoot{Rohit Goswami}
+\cfoot{}
+\rfoot{\thepage}
+\renewcommand{\headrulewidth}{0.4pt}
+\renewcommand{\footrulewidth}{0.4pt}
+% When using the classes report, scrreprt, book,
+% scrbook or memoir, uncomment the following line.
+%\addtokomafont{chapter}{\color{heading-color}}
+\usepackage[default]{sourcesanspro}
+\usepackage{sourcecodepro}
+\usepackage[margin=2.5cm,includehead=true,includefoot=true,centering]{geometry}
+\author{Rohit Goswami,\textsc{\scriptsize\ AMIChemE}}
+\date{\today}
+\title{Notes and Bits\\\medskip
+\large A univ.ai compendium}
+\hypersetup{
+ pdfauthor={Rohit Goswami,\textsc{\scriptsize\ AMIChemE}},
+ pdftitle={Notes and Bits},
+ pdfkeywords={},
+ pdfsubject={},
+ pdfcreator={Emacs 26.2 (Org mode 9.1.9)}, 
+ pdflang={English}}
+\begin{document}
+
+\begin{titlepage}
+\newgeometry{left=6cm}
+\definecolor{titlepage-color}{HTML}{06386e}
+\newpagecolor{titlepage-color}\afterpage{\restorepagecolor}
+\newcommand{\colorRule}[3][black]{\textcolor[HTML]{#1}{\rule{#2}{#3}}}
+\begin{flushleft}
+\noindent
+\\[-1em]
+\color[HTML]{ffffff}
+\makebox[0pt][l]{\colorRule[ffffff]{1.3\textwidth}{1pt}}
+\par
+\noindent
+
+{ \setstretch{1.4}
+\vfill
+\noindent {\huge \textbf{\textsf{Notes and Bits}}}
+\vskip 1em
+{\Large \textsf{A univ.ai compendium}}
+\vskip 2em
+\noindent
+{\Large \textsf{\MakeUppercase{Rohit Goswami,\textsc{\scriptsize\ AMIChemE}}}
+\vfill
+}
+
+\textsf{\today}}
+\end{flushleft}
+\end{titlepage}
+\restoregeometry
+
+\tableofcontents
+\newpage
+
+These are to be used in conjunction with the materials which have all been
+forked to my own github repo. As such I will link to them and these are to be
+used mainly to capture important aspects of the discussion. The topics listed
+below have videos and slides in the repositories listed.
+
+\begin{center}
+\begin{tabular}{ll}
+Topic & Repo\\
+\hline
+Regression (KNN and Linear) & \href{https://github.com/univai-summerschool-2019/Regression}{Regression}\\
+Selection and Regularization & \href{https://github.com/univai-summerschool-2019/ValidationRegularization}{ValidationRegularization}\\
+Logistic Regression & \href{https://github.com/univai-summerschool-2019/Classification}{Classification}\\
+Classification Trees and Bagging & \href{https://github.com/univai-summerschool-2019/Trees}{Trees}\\
+Enhanced Sampling (Boosting) & \href{https://github.com/univai-summerschool-2019/Boosting}{Boosting}\\
+Perceptrons & \href{https://github.com/univai-summerschool-2019/ANN}{ANN}\\
+Neural Networks (Regularization and Optimization) & \href{https://github.com/univai-summerschool-2019/ANN2}{ANN2}\\
+\end{tabular}
+\end{center}
+
+Furthermore there are several topics covered as labs with papers.
+
+\begin{center}
+\begin{tabular}{ll}
+Topic & Repo\\
+\hline
+Convolutional Neural Networks & CNN \{\href{https://github.com/univai-summerschool-2019/CNN1}{One}, \href{https://github.com/univai-summerschool-2019/CNN3}{Three}, \href{https://github.com/univai-summerschool-2019/CNN4}{Four}\}\\
+Language Models & Lang \{\href{https://github.com/univai-summerschool-2019/Lang1}{One}, \href{https://github.com/univai-summerschool-2019/Lang2}{Two}, \href{https://github.com/univai-summerschool-2019/Lang3}{Three}\}\\
+RNNs  (Ensembles) & \href{https://github.com/univai-summerschool-2019/CaptionHack}{CaptionHack}\\
+\end{tabular}
+\end{center}
+
+\section{Predictors}
+\label{sec:orgdf81ab2}
+The measurement erorr is irreducile. Inspite of the way the measurements are
+independent, we are able to sample over time. The basic concept is that the
+confidence intervals for the predictors can be estimated. This now allows us to
+treat it as a cumulative distribution, and therefore we can calculate the
+standard errors. Now confidence intervals may also be obtained.
+\subsection{Bootstrap}
+\label{sec:orgac02bb8}
+This basically is a quasi-equilibrium assumpion. This allows for the fomulation
+of multiple populations, and then as a consequencuntly
+\begin{quote}
+Bootstrap aggregating, also called bagging, is a machine learning ensemble
+meta-algorithm designed to improve the stability and accuracy of machine
+learning algorithms used in statistical classification and regression.
+\end{quote}
+The quoted text is \href{https://en.wikipedia.org/wiki/Bootstrap\_aggregating}{from wikipedia}.
+\subsection{Standard Errors}
+\label{sec:org3562c0a}
+\subsection{Hypothesis Testing}
+\label{sec:org14c2072}
+This is the formal process through wich we evaluate the validyty of a
+statistical hypothesis by considering evidence for or against the hypothesis
+gathered by random sampling of the data.
+
+\section{Validation}
+\label{sec:org25c31d9}
+Essentially the take away is that though we can and will fit perfectly to the
+training data as we increase the polynomial degree, we will actually see a
+\textbf{decrease} in the accuracy metric (\(R^2\)) as the degree is increased due to
+overfitting.
+
+The large number standard (around >50) for large data-sets without multimodes is
+a good idea. Basically, don't always use the general \(80:20\) for train:test and
+\(25\%\) for validation.
+
+The errors increase with the degree, not because of error propogation, but
+because \textbf{the sensitivity has increased} due to the fact that at higher degrees
+we have \uline{overfitting}.
+
+\section{Regularization}
+\label{sec:org3f462d8}
+Interestingly, using gradient techniques will not give us any better coeffients
+in this form. That is, the regularization is not achieved by optimization. So in
+effect, we need more than the loss function, we need the penalty function.
+
+To wit, when using regularization for linear cases, we are essentially using it
+to reduce the dimensionality of our space. That is it is somewhat like feature
+selection or dimensional reduction.
+\subsection{LASSO and Ridge}
+\label{sec:org520b9f5}
+So from the geometry and the fact that is more probable that from the LASSO
+formulation we will obtain many zeros (it forms a square and the points are most
+likely). The ridge is faster though. The LASSO is slower because it depends on
+the \(L_1\) norm which is not exactly differentiable (due to it being a modulus).
+\section{Advanced Regression}
+\label{sec:org60c8c0f}
+\subsection{Closed form regression}
+\label{sec:orgaec938b}
+So from the euclidean norm, we can use the inner product aspect to get the
+derivative. Ridge
+\subsection{Norms}
+\label{sec:org0387473}
+\subsubsection{Euclidean Distance (L2)}
+\label{sec:orgd6381f7}
+This is the L2 and is basically the distance.
+\subsubsection{L1 Norm}
+\label{sec:orgfc3b75c}
+This is just the modulus, or the absolute sum of the values.
+\subsubsection{General Norms}
+\label{sec:org84b5a85}
+So given a p-norm, we have the sum for every element, to the p\(^{\text{th}}\) power, and
+then raise the entirity of it to \(\frac{1}{p}\) 
+
+\begin{quote}
+Can't we apply a transform to ensure the the isocontour of our Ridge regression
+is actually on the axes as well? Just like the corners of the L1 regularization
+fall on the axes.
+\end{quote}
+
+achuta@ucla.edu
+\section{Logistic Regression}
+\label{sec:orgab94bf5}
+Logistic regression depends on predicting the \(Y=1\) class, or the positive
+class. Now the softmax is the generalized logistic regression mapping function,
+but is basically the linear one in the equation below.
+$$\frac{1}{1-e^{-(\beta_{0}+\beta_{1}X)}}$$
+
+So one unit change is an \(e^{\beta_{1}}\) in the odds that \(Y=1\)
+\begin{itemize}
+\item This is also called a discriminative classifier, as they directly model the
+probability of some class being present on the basis of the features
+\end{itemize}
+\section{Sparsity}
+\label{sec:org17ba4c6}
+JPEG is by convention 8 by 8 bits. Consider the DCT (Discrete Cosine Transform).
+
+Low freqency variations are more common in images. The \href{https://spie.org/publications/book/34917}{SPIE handbook on
+compression} this is really very good.
+
+So it turns out that when we have colors to be encoded, then we deal with them
+as linear combinations, like 3 matrices for an RGB image. The mosaic class of
+methods are used to extrapolate other colors from existing ones to reduce
+complexity.
+
+Sparsity helps work with scale invariace of image sets, which can then be used
+for image processing. Compressive sensing, or compressed sensing. This is used
+for taking tiny datasets and forming a lot of information from it. This is
+apparently lossless (must ask for the proof). The proof is by restricted
+isometry. An approximate isometry property. A matrix \(A\) is said to satisfy the
+RIP of order \(K\) with isometry constant. (ask for the rest)
+\section{Decision Trees}
+\label{sec:org15b838d}
+So this is different from KNN because KNN does not look at variables, basically
+it is a clustering algorithm. Clustering algorithms may also look at density and
+but they do not consider labels. In a decision tree we simply draw the line where
+the probability of being in both classes is equal. The decision tree approach
+does not look at the density per-se. KNN is predictive as opposed to
+inferential. So the decision boundary we put is sort of not just where the
+probability is equal, it is technically wherever we need to put the positive
+prediction threshold.
+
+So the confidence of the model can only be visualized (via noting how peaked the
+histogram is). Basically given the same point on the decision boundary, there
+may be multiple curves through it but they will have different
+"sharpness-factors".
+
+\begin{quote}
+Basically, a flow chart whose graph is a tree (connected and no cycles)
+represents a model called a decision tree.
+\end{quote}
+
+It turns out that though we can actually use \textbf{m-nary} trees instead of binary
+trees, but it is more relevant (computationally) to use the binary one instead.
+
+\subsection{Errors}
+\label{sec:org043fdb6}
+The Gini index is used to determine purity post split. Another method is to use
+the maxiumum misclassification rate, weigh it according to the number of points, and
+move towards the minimum of that.
+
+\subsection{Classification Trees}
+\label{sec:org05071ea}
+\subsection{Regression Trees}
+\label{sec:org17d8a07}
+When we discuss these, then it is important to note that local effects are
+better captured by the tree regression techniques compared to the polynomial and
+linear regression methods. This means that the linear/polynomial version is
+global in nature, while the tree model is local. Naturally, the
+linear/polynomial has a guarantee to a minimum, but the regression tree,
+typically being piecewise linear, the regression tree will be better for
+situations where there is less smooth. So we can test the Hessian and see if the
+data is smooth, if it is the polynomial or linear regression is better, while if
+it is a sort of jagged system, then the polynomial will be of a high degree and
+therefore we don't want to try that.
+
+There is no need for standardization typically because this is one feature
+at a time.
+
+\begin{itemize}
+\item In both cases we report only accuracies from the leaf nodes, that is the R\(^{\text{2}}\)
+\item In both cases we report only accuracies from the leaf nodes, that is the \(R^2\)
+for the regression case, and the accuracy for the classification.
+\end{itemize}
+
+It has been proven that it is computationally more tractable to use decision
+trees when compared to piecewise linear regression.
+\subsection{Weighted Samples}
+\label{sec:orgad05e15}
+The most important thing about this is that though we do use weights which
+effectively change the distribution, this is ONLY done to the \textbf{training-set}.
+The test and validation sets must be as biased as the original training set.
+\subsection{Impudation}
+\label{sec:org821984f}
+This seems to be the way you fix missing data. Conditional impudation is when
+you look at it. KNN is also used for the imputation of points. KNN imputation is
+expensive. Typically we can throw away columns if there is a lot of points missin.
+\section{Machine Learning and Denoising}
+\label{sec:orgf233cc2}
+So a dictionary learning thing is something which can be used to learn a
+compressible basis, sort of like the DCT or the DFT. Well it is better to
+consider it as a \textbf{sparse basis}.
+
+The basic concept is that an image, can be broken down into a n-dimensional
+representatin with relative energies of the frequencies.
+
+Now with the n-dimensions, we can create a matrix A (which is fat as it contains
+m-dimensions, and \(n<m\)). Now we have a measurement of n-dimensions, so we can
+have the
+
+\begin{description}
+\item[{L\(_{\text{0}}\) Norm}] This is simply the number of nonzero numbers.
+\end{description}
+
+Learning a dictionary is the main problem, this is done by K-SVD. Basically we
+need the dictionary to enforce the constraint that the sparse solution we obtain
+from the LASSO formalization, should be such that it corresponds to a true
+image, i.e. it ensures that only the first n-columns of the matrix have values
+and the rest are 0s.
+
+\begin{itemize}
+\item The sparsest solution is proven to be unique.
+\end{itemize}
+Check and read \href{https://link.springer.com/book/10.1007\%252F978-1-4419-7011-4}{this book}.
+\section{Artificial Neural Networks}
+\label{sec:org030609e}
+\subsection{Overfitting and Regularization}
+\label{sec:orgc5cbe9b}
+\begin{itemize}
+\item Dropout is a bit slower due to the weighted probabilities implementiation
+\item Random noise is also a valid way to prevent overfitting (Adversarial)
+\item Early stopping is typically the most popular
+\end{itemize}
+\section{Convolutional Neural Networks}
+\label{sec:orgc44b8b9}
+The basic concept of working with these is to generate kernels such that each
+one extracts information from the image.
+
+\begin{itemize}
+\item There are no guarantees that the kernels learned by the covolutional networks
+correspond to meaningful image transforms
+\item Imposing constraints on the intermediate layers has not yet shown any promise
+\item Convolutions in space are not are the same as the signal impulse domain
+transforms, since these smooth them out
+\end{itemize}
+\subsection{Dilated CNNs}
+\label{sec:orgfe4e0c6}
+So here we basically skip some connections during the inner layers. Essentially
+we have a wider receptive field. We do \textbf{not} lose information simply by using
+dilated CNNs since they are \textbf{lossless} (just a bunch of multiplications).
+Technically this is not true when we use max pooling in between the subsequent
+layers, but even so the trade off is probably worth it. A stride will skip a few
+pixels and therefore lose information.
+\subsection{Saliency Map}
+\label{sec:org570adbf}
+This is done to determine the most relevant section of the image and it
+essentially consists of taking the partial derivative of the loss function
+w.r.t. every single input pixel, however in practice this is simply part of
+back-propogation.
+\subsection{Max Pooling and Back Propagation}
+\label{sec:org02e7244}
+Max pooling averages (smears out) the information, so it is problematic for
+backpropagation. The fix for this is a rather novel way of book-keeping. It
+basically stores the derivative and the corresponding value of the previous
+layer, then we simply increment the value in the previous layer (this is best
+seen in the slides).
+\section{Language Embeddings}
+\label{sec:org76f8d6f}
+\subsection{Personality Traits and Sentiment Analysis}
+\label{sec:orgbd9fc39}
+\begin{itemize}
+\item A simple logistic regression on a
+bag-of-words model works quite well.
+\item Typically, an older style used a
+bunch of grammar rules corresponding to various sentiments. Nowadays it is
+more expedient to embed the language into a representative space and use a
+neural network.
+\item The cosine similarity (the dot product) of the
+vector of traits (the embedding) is the metric for determining, say,
+personality traits.
+\item Since this is an angle oriented measure,
+it is kind of scale independent in the sense that it can be used to compare
+systems of different vector lengths.
+\end{itemize}
+\subsection{Words}
+\label{sec:org932af0a}
+For words, or categorical systems, the one-hot-encoding causes the cosine
+similarity to mess up as the construction causes the values to zero out.
+
+\begin{itemize}
+\item To circumvent this scenario, a \textbf{lower dimensional} embedding is learnt, such
+that the similarity is maintained. In practice this corresponds to a linear
+regression over other metrics (for different \textbf{tasks}) which are then used to
+obtain ranks or scores with numeric content so the cosine similarity is maintained.
+\item Latent spaces are used along with non negative matrix methods to encode these
+into a space.
+\item The best way to get better embeddings is to use multiple tasks for originally
+obtaining the space. This is used in the newer neural natural language
+processing systems like BERT, ELMO etc.
+\end{itemize}
+
+\begin{quote}
+Given an infinitely large corpus of varying styles, won't the embedding get
+progressively worse? Basically, won't it eventually become akin to a dictionary?
+What are the bounds on this process? The learning and the subsequent increase in
+predictive ability?
+\end{quote}
+
+Something
+\section{Recurrent Neural Networks}
+\label{sec:org90fb63f}
+\begin{itemize}
+\item The values forgotten must be trained with appropriate weights to prevent
+important aspects of the test set
+\end{itemize}
+
+First and second universal approximation theorem.
+A gaussian process can be obtained by an infinitely wide and very deep neural
+network.
+\section{Generative Models}
+\label{sec:orgc69b445}
+We will now consider the joint probability distribution of the output given the
+inputs.
+
+\begin{itemize}
+\item We can consider the joint probability distribution:
+\end{itemize}
+$$P(x)=\Sum_y p(x,y)=\Sum_y p(x|y)p(y)$$
+
+\begin{itemize}
+\item Or by the conditional probability
+\end{itemize}
+$$P(x)=\frac{p(x,y)}{p(y|x)}$$
+
+\begin{itemize}
+\item We know that \(p(x|y)\) does not depend on the other classes
+
+\item For these situations, where the data is basically from a gaussian (one per
+class is fine), then we can model the \textbf{mixture model}, that is we can model
+the probability of the features given the class.
+\item Furthermore we know from the definition of probabilities, that they are
+tatntamout to the same thing, that is
+\end{itemize}
+$$p(y|x)p(x)=p(x,y)=p(x|y)p(y)$$
+$$\frac{p(x|c=1)p(c=1)}{p(x|c=1)p(c)+p(x|c=0)p(c=0)}$$
+
+\begin{itemize}
+\item In effect what we need is Bayes theorem
+\item LDA is generative as it models \(p(x|c)\) while logistic models \(p(c|x)\) that
+is, it is tantamount to the unlabeled logistic situation
+\end{itemize}
+
+\begin{center}
+\begin{tabular}{ll}
+Generative & Discriminative\\
+\hline
+Better at data asymmetry & Better for callibrated probabilites\\
+Can add new classes & Usually less expensive\\
+Handle missing or unlabelled data & Preprocessing is easier\\
+LDA and Naive Bayes are easy to fit & These need convex optimatization\\
+\end{tabular}
+\end{center}
+
+\begin{itemize}
+\item The representations are typically \textbf{not} Gaussians, especially when applied to
+correlated data like image data
+\end{itemize}
+\section{Variational Autoencoders}
+\label{sec:org1cbc582}
+\begin{itemize}
+\item When we 'blend' the latent variables together, what we are causing is a
+reorganization in the latent variable space, which then determines the
+Gaussians
+\item The sampling cannot normally be differentiated, but for a normal distribution,
+we know that the distribution may be expressed as the sum of the average and
+sigma times the normal zero-one distribution
+\item Try playing with the KL divergence to understand the prior and posterior
+distribution effects
+\end{itemize}
+\end{document}

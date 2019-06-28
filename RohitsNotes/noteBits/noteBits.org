@@ -1,0 +1,562 @@
+#+TITLE: Notes and Bits
+#+SUBTITLE: A univ.ai compendium
+#+AUTHOR: Rohit Goswami,\textsc{\scriptsize\ AMIChemE}
+# This should not be altered
+#+OPTIONS: toc:nil title:nil
+# I need the footnotes to be inlined
+#+STARTUP: fninline
+
+#
+# LaTeX Stuff (from eisvogel https://raw.githubusercontent.com/Wandmalfarbe/pandoc-latex-template/master/eisvogel.tex)
+#
+
+#+LATEX_COMPILER: xelatex
+#+LATEX_CLASS: koma-article
+#+LATEX_CLASS_OPTIONS: [12pt,a4paper,oneside,headinclude]
+
+#+LATEX_HEADER: \PassOptionsToPackage{unicode=true}{hyperref}
+#+LATEX_HEADER: \PassOptionsToPackage{hyphens}{url}
+#+LATEX_HEADER: \PassOptionsToPackage{dvipsnames,svgnames*,x11names*,table}{xcolor}
+
+
+#+LATEX_HEADER: \usepackage{lmodern}
+#+LATEX_HEADER: \usepackage{amssymb,amsmath}
+#+LATEX_HEADER: \usepackage{physics}
+#+LATEX_HEADER: \usepackage{ifxetex,ifluatex}
+#+LATEX_HEADER: \usepackage{fixltx2e} % provides \textsubscript
+#+LATEX_HEADER: \ifnum 0\ifxetex 1\fi\ifluatex 1\fi=0 % if pdftex
+#+LATEX_HEADER: \usepackage[T1]{fontenc}
+#+LATEX_HEADER: \usepackage[utf8]{inputenc}
+#+LATEX_HEADER: \usepackage{textcomp} % provides euro and other symbols
+#+LATEX_HEADER: \else % if luatex or xelatex
+#+LATEX_HEADER: \usepackage{unicode-math}
+#+LATEX_HEADER: \defaultfontfeatures{Ligatures=TeX,Scale=MatchLowercase}
+#+LATEX_HEADER: \fi
+#+LATEX_HEADER: % use upquote if available, for straight quotes in verbatim environments
+#+LATEX_HEADER: \IfFileExists{upquote.sty}{\usepackage{upquote}}{}
+#+LATEX_HEADER: % use microtype if available
+#+LATEX_HEADER: \IfFileExists{microtype.sty}{%
+#+LATEX_HEADER: \usepackage[]{microtype}
+#+LATEX_HEADER: \UseMicrotypeSet[protrusion]{basicmath} % disable protrusion for tt fonts
+#+LATEX_HEADER: }{}
+#+LATEX_HEADER: \IfFileExists{parskip.sty}{%
+#+LATEX_HEADER: \usepackage{parskip}
+#+LATEX_HEADER: }{% else
+#+LATEX_HEADER: \setlength{\parindent}{0pt}
+#+LATEX_HEADER: \setlength{\parskip}{6pt plus 2pt minus 1pt}
+#+LATEX_HEADER: }
+#+LATEX_HEADER: \usepackage{hyperref}
+#+LATEX_HEADER: \hypersetup{
+#+LATEX_HEADER:             pdftitle={ },
+#+LATEX_HEADER:             pdfauthor={Author},
+#+LATEX_HEADER:             pdfborder={0 0 0},
+#+LATEX_HEADER:             breaklinks=true}
+#+LATEX_HEADER: \urlstyle{same}  % don't use monospace font for urls
+
+#+LATEX_HEADER: \usepackage{longtable,booktabs}
+#+LATEX_HEADER: % Fix footnotes in tables (requires footnote package)
+#+LATEX_HEADER: \IfFileExists{footnote.sty}{\usepackage{footnote}\makesavenoteenv{longtable}}{}
+#+LATEX_HEADER: \usepackage{graphicx,grffile}
+#+LATEX_HEADER: \makeatletter
+#+LATEX_HEADER: \def\maxwidth{\ifdim\Gin@nat@width>\linewidth\linewidth\else\Gin@nat@width\fi}
+#+LATEX_HEADER: \def\maxheight{\ifdim\Gin@nat@height>\textheight\textheight\else\Gin@nat@height\fi}
+#+LATEX_HEADER: \makeatother
+#+LATEX_HEADER: % Scale images if necessary, so that they will not overflow the page
+#+LATEX_HEADER: % margins by default, and it is still possible to overwrite the defaults
+#+LATEX_HEADER: % using explicit options in \includegraphics[width, height, ...]{}
+#+LATEX_HEADER: \setkeys{Gin}{width=\maxwidth,height=\maxheight,keepaspectratio}
+#+LATEX_HEADER: \setlength{\emergencystretch}{3em}  % prevent overfull lines
+#+LATEX_HEADER: \providecommand{\tightlist}{%
+#+LATEX_HEADER:   \setlength{\itemsep}{0pt}\setlength{\parskip}{0pt}}
+#+LATEX_HEADER: \setcounter{secnumdepth}{0}
+#+LATEX_HEADER: % Redefines (sub)paragraphs to behave more like sections
+#+LATEX_HEADER: \ifx\paragraph\undefined\else
+#+LATEX_HEADER: \let\oldparagraph\paragraph
+#+LATEX_HEADER: \renewcommand{\paragraph}[1]{\oldparagraph{#1}\mbox{}}
+#+LATEX_HEADER: \fi
+#+LATEX_HEADER: \ifx\subparagraph\undefined\else
+#+LATEX_HEADER: \let\oldsubparagraph\subparagraph
+#+LATEX_HEADER: \renewcommand{\subparagraph}[1]{\oldsubparagraph{#1}\mbox{}}
+#+LATEX_HEADER: \fi
+
+#+LATEX_HEADER: % Make use of float-package and set default placement for figures to H
+#+LATEX_HEADER: \usepackage{float}
+#+LATEX_HEADER: \floatplacement{figure}{H}
+
+#+LATEX_HEADER: \numberwithin{figure}{section}
+#+LATEX_HEADER: \numberwithin{equation}{section}
+#+LATEX_HEADER: \numberwithin{table}{section}
+#+LATEX_HEADER: \makeatletter
+#+LATEX_HEADER: \@ifpackageloaded{subfig}{}{\usepackage{subfig}}
+#+LATEX_HEADER: \@ifpackageloaded{caption}{}{\usepackage{caption}}
+#+LATEX_HEADER: \captionsetup[subfloat]{margin=0.5em}
+#+LATEX_HEADER: \AtBeginDocument{%
+#+LATEX_HEADER: \renewcommand*\figurename{Figure}
+#+LATEX_HEADER: \renewcommand*\tablename{Table}
+#+LATEX_HEADER: }
+#+LATEX_HEADER: \AtBeginDocument{%
+#+LATEX_HEADER: \renewcommand*\listfigurename{List of Figures}
+#+LATEX_HEADER: \renewcommand*\listtablename{List of Tables}
+#+LATEX_HEADER: }
+#+LATEX_HEADER: \@ifpackageloaded{float}{}{\usepackage{float}}
+#+LATEX_HEADER: \floatstyle{ruled}
+#+LATEX_HEADER: \@ifundefined{c@chapter}{\newfloat{codelisting}{h}{lop}}{\newfloat{codelisting}{h}{lop}[chapter]}
+#+LATEX_HEADER: \floatname{codelisting}{Listing}
+#+LATEX_HEADER: \makeatother
+
+#+LATEX_HEADER: \usepackage[dvipsnames,svgnames*,x11names*,table]{xcolor}
+#+LATEX_HEADER: \definecolor{listing-background}{HTML}{F7F7F7}
+#+LATEX_HEADER: \definecolor{listing-rule}{HTML}{B3B2B3}
+#+LATEX_HEADER: \definecolor{listing-numbers}{HTML}{B3B2B3}
+#+LATEX_HEADER: \definecolor{listing-text-color}{HTML}{000000}
+#+LATEX_HEADER: \definecolor{listing-keyword}{HTML}{435489}
+#+LATEX_HEADER: \definecolor{listing-identifier}{HTML}{435489}
+#+LATEX_HEADER: \definecolor{listing-string}{HTML}{00999A}
+#+LATEX_HEADER: \definecolor{listing-comment}{HTML}{8E8E8E}
+#+LATEX_HEADER: \definecolor{listing-javadoc-comment}{HTML}{006CA9}
+
+#+LATEX_HEADER: \usepackage{pagecolor}
+#+LATEX_HEADER: \usepackage{afterpage}
+#+LATEX_HEADER: \setcounter{tocdepth}{3}
+#+LATEX_HEADER: \usepackage{setspace}
+#+LATEX_HEADER: \setstretch{1.2}
+#+LATEX_HEADER: \usepackage{csquotes}
+#+LATEX_HEADER: \usepackage[font={small,it}]{caption}
+#+LATEX_HEADER: \newcommand{\imglabel}[1]{\textbf{\textit{(#1)}}}
+#+LATEX_HEADER: \definecolor{blockquote-border}{RGB}{221,221,221}
+#+LATEX_HEADER: \definecolor{blockquote-text}{RGB}{119,119,119}
+#+LATEX_HEADER: \usepackage{mdframed}
+#+LATEX_HEADER: \newmdenv[rightline=false,bottomline=false,topline=false,linewidth=3pt,linecolor=blockquote-border,skipabove=\parskip]{customblockquote}
+#+LATEX_HEADER: \renewenvironment{quote}{\begin{customblockquote}\list{}{\rightmargin=0em\leftmargin=0em}%
+#+LATEX_HEADER: \item\relax\color{blockquote-text}\ignorespaces}{\unskip\unskip\endlist\end{customblockquote}}
+#+LATEX_HEADER: \definecolor{heading-color}{RGB}{40,40,40}
+#+LATEX_HEADER: \addtokomafont{section}{\color{heading-color}}
+#+LATEX_HEADER: \usepackage{titling}
+#+LATEX_HEADER: \renewcommand{\arraystretch}{1.3} % table spacing
+#+LATEX_HEADER: \definecolor{table-row-color}{HTML}{F5F5F5}
+#+LATEX_HEADER: \rowcolors{3}{}{table-row-color!100}
+
+#+LATEX_HEADER: % Reset rownum counter so that each table starts with the same row color
+#+LATEX_HEADER: \let\oldlongtable\longtable
+#+LATEX_HEADER: \let\endoldlongtable\endlongtable
+#+LATEX_HEADER: \renewenvironment{longtable}{\oldlongtable} {
+#+LATEX_HEADER: \endoldlongtable
+#+LATEX_HEADER: \global\rownum=0\relax}
+#+LATEX_HEADER: \setlength{\parindent}{0pt}
+#+LATEX_HEADER: \setlength{\parskip}{6pt plus 2pt minus 1pt}
+#+LATEX_HEADER: \setlength{\emergencystretch}{3em}  % prevent overfull lines
+
+#+LATEX_HEADER: \usepackage{fancyhdr}
+#+LATEX_HEADER: \pagestyle{fancy}
+#+LATEX_HEADER: \fancyhead{}
+#+LATEX_HEADER: \fancyfoot{}
+#+LATEX_HEADER: \lhead{Notes and Bits}
+#+LATEX_HEADER: \chead{}
+#+LATEX_HEADER: \rhead{\today}
+#+LATEX_HEADER: \lfoot{Rohit Goswami}
+#+LATEX_HEADER: \cfoot{}
+#+LATEX_HEADER: \rfoot{\thepage}
+#+LATEX_HEADER: \renewcommand{\headrulewidth}{0.4pt}
+#+LATEX_HEADER: \renewcommand{\footrulewidth}{0.4pt}
+
+
+#+LATEX_HEADER: % When using the classes report, scrreprt, book,
+#+LATEX_HEADER: % scrbook or memoir, uncomment the following line.
+#+LATEX_HEADER: %\addtokomafont{chapter}{\color{heading-color}}
+
+
+# Nicer Fonts
+# #+LATEX_HEADER: \usepackage{xunicode}
+# #+LATEX_HEADER: \usepackage{xltxtra}
+# #+LATEX_HEADER: \usepackage[protrusion=true,final]{microtype}
+# #+LATEX_HEADER: \usepackage{mathspec}
+# #+LATEX_HEADER: \defaultfontfeatures{Mapping=tex-text}
+# #+LATEX_HEADER: \setromanfont[Ligatures={Common}, Numbers={OldStyle}]{Hoefler Text}
+# #+LATEX_HEADER: \setsansfont[Scale=0.9]{Helvetica Neue}
+# #+LATEX_HEADER: \setmonofont[Scale=0.8]{Courier}
+# #+LATEX_HEADER: \newfontfamily\scfont[Scale=1.2]{Minion Pro}
+
+#+LATEX_HEADER: \usepackage[default]{sourcesanspro}
+#+LATEX_HEADER: \usepackage{sourcecodepro}
+
+# Wider Text
+# #+LATEX_HEADER: \usepackage[textwidth=7in,textheight=9in]{geometry}
+#+LATEX_HEADER: \usepackage[margin=2.5cm,includehead=true,includefoot=true,centering]{geometry}
+
+\begin{titlepage}
+\newgeometry{left=6cm}
+\definecolor{titlepage-color}{HTML}{06386e}
+\newpagecolor{titlepage-color}\afterpage{\restorepagecolor}
+\newcommand{\colorRule}[3][black]{\textcolor[HTML]{#1}{\rule{#2}{#3}}}
+\begin{flushleft}
+\noindent
+\\[-1em]
+\color[HTML]{ffffff}
+\makebox[0pt][l]{\colorRule[ffffff]{1.3\textwidth}{1pt}}
+\par
+\noindent
+
+{ \setstretch{1.4}
+\vfill
+\noindent {\huge \textbf{\textsf{Notes and Bits}}}
+\vskip 1em
+{\Large \textsf{A univ.ai compendium}}
+\vskip 2em
+\noindent
+{\Large \textsf{\MakeUppercase{Rohit Goswami,\textsc{\scriptsize\ AMIChemE}}}
+\vfill
+}
+
+\textsf{\today}}
+\end{flushleft}
+\end{titlepage}
+\restoregeometry
+
+\tableofcontents
+\newpage
+
+# Start Here
+
+These are to be used in conjunction with the materials which have all been
+forked to my own github repo. As such I will link to them and these are to be
+used mainly to capture important aspects of the discussion. The topics listed
+below have videos and slides in the repositories listed.
+
+| Topic                                             | Repo                     |
+|---------------------------------------------------+--------------------------|
+| Regression (KNN and Linear)                       | [[https://github.com/univai-summerschool-2019/Regression][Regression]]               |
+| Selection and Regularization                      | [[https://github.com/univai-summerschool-2019/ValidationRegularization][ValidationRegularization]] |
+| Logistic Regression                               | [[https://github.com/univai-summerschool-2019/Classification][Classification]]           |
+| Classification Trees and Bagging                  | [[https://github.com/univai-summerschool-2019/Trees][Trees]]                    |
+| Enhanced Sampling (Boosting)                      | [[https://github.com/univai-summerschool-2019/Boosting][Boosting]]                 |
+| Perceptrons                                       | [[https://github.com/univai-summerschool-2019/ANN][ANN]]                      |
+| Neural Networks (Regularization and Optimization) | [[https://github.com/univai-summerschool-2019/ANN2][ANN2]]                     |
+
+Furthermore there are several topics covered as labs with papers.
+
+| Topic                         | Repo                   |
+|-------------------------------+------------------------|
+| Convolutional Neural Networks | CNN {[[https://github.com/univai-summerschool-2019/CNN1][One]], [[https://github.com/univai-summerschool-2019/CNN3][Three]], [[https://github.com/univai-summerschool-2019/CNN4][Four]]} |
+| Language Models               | Lang {[[https://github.com/univai-summerschool-2019/Lang1][One]], [[https://github.com/univai-summerschool-2019/Lang2][Two]], [[https://github.com/univai-summerschool-2019/Lang3][Three]]} |
+| RNNs  (Ensembles)             | [[https://github.com/univai-summerschool-2019/CaptionHack][CaptionHack]]            |
+
+* Predictors
+The measurement erorr is irreducile. Inspite of the way the measurements are
+independent, we are able to sample over time. The basic concept is that the
+confidence intervals for the predictors can be estimated. This now allows us to
+treat it as a cumulative distribution, and therefore we can calculate the
+standard errors. Now confidence intervals may also be obtained.
+** Bootstrap
+This basically is a quasi-equilibrium assumpion. This allows for the fomulation
+of multiple populations, and then as a consequencuntly
+#+BEGIN_QUOTE
+Bootstrap aggregating, also called bagging, is a machine learning ensemble
+meta-algorithm designed to improve the stability and accuracy of machine
+learning algorithms used in statistical classification and regression.
+#+END_QUOTE
+The quoted text is [[https://en.wikipedia.org/wiki/Bootstrap_aggregating][from wikipedia]].
+** Standard Errors
+** Hypothesis Testing
+This is the formal process through wich we evaluate the validyty of a
+statistical hypothesis by considering evidence for or against the hypothesis
+gathered by random sampling of the data.
+
+* Validation
+Essentially the take away is that though we can and will fit perfectly to the
+training data as we increase the polynomial degree, we will actually see a
+*decrease* in the accuracy metric ($R^2$) as the degree is increased due to
+overfitting.
+
+The large number standard (around >50) for large data-sets without multimodes is
+a good idea. Basically, don't always use the general $80:20$ for train:test and
+$25\%$ for validation.
+
+The errors increase with the degree, not because of error propogation, but
+because *the sensitivity has increased* due to the fact that at higher degrees
+we have _overfitting_.
+
+* Regularization
+Interestingly, using gradient techniques will not give us any better coeffients
+in this form. That is, the regularization is not achieved by optimization. So in
+effect, we need more than the loss function, we need the penalty function.
+
+To wit, when using regularization for linear cases, we are essentially using it
+to reduce the dimensionality of our space. That is it is somewhat like feature
+selection or dimensional reduction.
+** LASSO and Ridge
+So from the geometry and the fact that is more probable that from the LASSO
+formulation we will obtain many zeros (it forms a square and the points are most
+likely). The ridge is faster though. The LASSO is slower because it depends on
+the $L_1$ norm which is not exactly differentiable (due to it being a modulus).
+* Advanced Regression
+:PROPERTIES:
+:CATEGORY: Achuta
+:END:
+** Closed form regression
+So from the euclidean norm, we can use the inner product aspect to get the
+derivative. Ridge
+** Norms
+*** Euclidean Distance (L2)
+This is the L2 and is basically the distance.
+*** L1 Norm
+This is just the modulus, or the absolute sum of the values.
+*** General Norms
+So given a p-norm, we have the sum for every element, to the p^{th} power, and
+then raise the entirity of it to $\frac{1}{p}$ 
+
+#+BEGIN_QUOTE
+Can't we apply a transform to ensure the the isocontour of our Ridge regression
+is actually on the axes as well? Just like the corners of the L1 regularization
+fall on the axes.
+#+END_QUOTE
+
+achuta@ucla.edu
+* Logistic Regression
+:PROPERTIES:
+:CATEGORY: Pavlov
+:END:
+Logistic regression depends on predicting the $Y=1$ class, or the positive
+class. Now the softmax is the generalized logistic regression mapping function,
+but is basically the linear one in the equation below.
+#+BEGIN_EXPORT latex
+$$\frac{1}{1-e^{-(\beta_{0}+\beta_{1}X)}}$$
+#+END_EXPORT
+
+So one unit change is an $e^{\beta_{1}}$ in the odds that $Y=1$
+- This is also called a discriminative classifier, as they directly model the
+  probability of some class being present on the basis of the features
+* Sparsity
+JPEG is by convention 8 by 8 bits. Consider the DCT (Discrete Cosine Transform).
+
+# $G_{u,v}=\frac{1}{4}\alpha(u)\alpha(v)\Sum_{x=0}^{7}g_{x,y}\cos{\left[\frac{(2x+1)u\pi}{16}\right]} \cos{\left[\frac{(2y+1)v\pi}{16}\right]}$
+
+Low freqency variations are more common in images. The [[https://spie.org/publications/book/34917][SPIE handbook on
+compression]] this is really very good.
+
+So it turns out that when we have colors to be encoded, then we deal with them
+as linear combinations, like 3 matrices for an RGB image. The mosaic class of
+methods are used to extrapolate other colors from existing ones to reduce
+complexity.
+
+Sparsity helps work with scale invariace of image sets, which can then be used
+for image processing. Compressive sensing, or compressed sensing. This is used
+for taking tiny datasets and forming a lot of information from it. This is
+apparently lossless (must ask for the proof). The proof is by restricted
+isometry. An approximate isometry property. A matrix $A$ is said to satisfy the
+RIP of order $K$ with isometry constant. (ask for the rest)
+* Decision Trees
+:PROPERTIES:
+:CATEGORY: Pavlov
+:END:
+So this is different from KNN because KNN does not look at variables, basically
+it is a clustering algorithm. Clustering algorithms may also look at density and
+but they do not consider labels. In a decision tree we simply draw the line where
+the probability of being in both classes is equal. The decision tree approach
+does not look at the density per-se. KNN is predictive as opposed to
+inferential. So the decision boundary we put is sort of not just where the
+probability is equal, it is technically wherever we need to put the positive
+prediction threshold.
+
+So the confidence of the model can only be visualized (via noting how peaked the
+histogram is). Basically given the same point on the decision boundary, there
+may be multiple curves through it but they will have different
+"sharpness-factors".
+
+#+BEGIN_QUOTE
+Basically, a flow chart whose graph is a tree (connected and no cycles)
+represents a model called a decision tree.
+#+END_QUOTE
+
+It turns out that though we can actually use *m-nary* trees instead of binary
+trees, but it is more relevant (computationally) to use the binary one instead.
+
+** Errors
+The Gini index is used to determine purity post split. Another method is to use
+the maxiumum misclassification rate, weigh it according to the number of points, and
+move towards the minimum of that.
+
+** Classification Trees
+** Regression Trees
+When we discuss these, then it is important to note that local effects are
+better captured by the tree regression techniques compared to the polynomial and
+linear regression methods. This means that the linear/polynomial version is
+global in nature, while the tree model is local. Naturally, the
+linear/polynomial has a guarantee to a minimum, but the regression tree,
+typically being piecewise linear, the regression tree will be better for
+situations where there is less smooth. So we can test the Hessian and see if the
+data is smooth, if it is the polynomial or linear regression is better, while if
+it is a sort of jagged system, then the polynomial will be of a high degree and
+therefore we don't want to try that.
+
+There is no need for standardization typically because this is one feature
+at a time.
+
+- In both cases we report only accuracies from the leaf nodes, that is the R^2
+- In both cases we report only accuracies from the leaf nodes, that is the $R^2$
+  for the regression case, and the accuracy for the classification.
+
+It has been proven that it is computationally more tractable to use decision
+trees when compared to piecewise linear regression.
+** Weighted Samples
+The most important thing about this is that though we do use weights which
+effectively change the distribution, this is ONLY done to the *training-set*.
+The test and validation sets must be as biased as the original training set.
+** Impudation
+This seems to be the way you fix missing data. Conditional impudation is when
+you look at it. KNN is also used for the imputation of points. KNN imputation is
+expensive. Typically we can throw away columns if there is a lot of points missin.
+* Machine Learning and Denoising
+So a dictionary learning thing is something which can be used to learn a
+compressible basis, sort of like the DCT or the DFT. Well it is better to
+consider it as a *sparse basis*.
+
+The basic concept is that an image, can be broken down into a n-dimensional
+representatin with relative energies of the frequencies.
+
+Now with the n-dimensions, we can create a matrix A (which is fat as it contains
+m-dimensions, and $n<m$). Now we have a measurement of n-dimensions, so we can
+have the
+
+- L_0 Norm :: This is simply the number of nonzero numbers.
+
+Learning a dictionary is the main problem, this is done by K-SVD. Basically we
+need the dictionary to enforce the constraint that the sparse solution we obtain
+from the LASSO formalization, should be such that it corresponds to a true
+image, i.e. it ensures that only the first n-columns of the matrix have values
+and the rest are 0s.
+
+- The sparsest solution is proven to be unique.
+Check and read [[https://link.springer.com/book/10.1007%252F978-1-4419-7011-4][this book]].
+* Artificial Neural Networks
+** Overfitting and Regularization
+- Dropout is a bit slower due to the weighted probabilities implementiation
+- Random noise is also a valid way to prevent overfitting (Adversarial)
+- Early stopping is typically the most popular
+* Convolutional Neural Networks
+The basic concept of working with these is to generate kernels such that each
+one extracts information from the image.
+
+- There are no guarantees that the kernels learned by the covolutional networks
+  correspond to meaningful image transforms
+- Imposing constraints on the intermediate layers has not yet shown any promise
+- Convolutions in space are not are the same as the signal impulse domain
+  transforms, since these smooth them out
+** Dilated CNNs
+So here we basically skip some connections during the inner layers. Essentially
+we have a wider receptive field. We do *not* lose information simply by using
+dilated CNNs since they are *lossless* (just a bunch of multiplications).
+Technically this is not true when we use max pooling in between the subsequent
+layers, but even so the trade off is probably worth it. A stride will skip a few
+pixels and therefore lose information.
+** Saliency Map
+This is done to determine the most relevant section of the image and it
+essentially consists of taking the partial derivative of the loss function
+w.r.t. every single input pixel, however in practice this is simply part of
+back-propogation.
+** Max Pooling and Back Propagation
+Max pooling averages (smears out) the information, so it is problematic for
+backpropagation. The fix for this is a rather novel way of book-keeping. It
+basically stores the derivative and the corresponding value of the previous
+layer, then we simply increment the value in the previous layer (this is best
+seen in the slides).
+* Language Embeddings
+:PROPERTIES:
+:CATEGORY: Rahul
+:END:
+** Personality Traits and Sentiment Analysis
+- A simple logistic regression on a
+  bag-of-words model works quite well.
+- Typically, an older style used a
+  bunch of grammar rules corresponding to various sentiments. Nowadays it is
+  more expedient to embed the language into a representative space and use a
+  neural network.
+- The cosine similarity (the dot product) of the
+  vector of traits (the embedding) is the metric for determining, say,
+  personality traits.
+- Since this is an angle oriented measure,
+  it is kind of scale independent in the sense that it can be used to compare
+  systems of different vector lengths.
+** Words
+For words, or categorical systems, the one-hot-encoding causes the cosine
+similarity to mess up as the construction causes the values to zero out.
+
+- To circumvent this scenario, a *lower dimensional* embedding is learnt, such
+  that the similarity is maintained. In practice this corresponds to a linear
+  regression over other metrics (for different *tasks*) which are then used to
+  obtain ranks or scores with numeric content so the cosine similarity is maintained.
+- Latent spaces are used along with non negative matrix methods to encode these
+  into a space.
+- The best way to get better embeddings is to use multiple tasks for originally
+  obtaining the space. This is used in the newer neural natural language
+  processing systems like BERT, ELMO etc.
+
+#+BEGIN_QUOTE
+Given an infinitely large corpus of varying styles, won't the embedding get
+progressively worse? Basically, won't it eventually become akin to a dictionary?
+What are the bounds on this process? The learning and the subsequent increase in
+predictive ability?
+#+END_QUOTE
+
+Something
+
+# Local Variables:
+# after-save-hook: haozeke/org-save-and-export-pdf
+# End:
+* Recurrent Neural Networks
+:PROPERTIES:
+:CATEGORY: Rahul
+:END:
+- The values forgotten must be trained with appropriate weights to prevent
+  important aspects of the test set
+
+First and second universal approximation theorem.
+A gaussian process can be obtained by an infinitely wide and very deep neural
+network.
+* Generative Models
+We will now consider the joint probability distribution of the output given the
+inputs.
+
+- We can consider the joint probability distribution:
+#+BEGIN_EXPORT latex
+$$P(x)=\Sum_y p(x,y)=\Sum_y p(x|y)p(y)$$
+#+END_EXPORT
+
+- Or by the conditional probability
+#+BEGIN_EXPORT latex
+$$P(x)=\frac{p(x,y)}{p(y|x)}$$
+#+END_EXPORT
+
+- We know that $p(x|y)$ does not depend on the other classes
+
+- For these situations, where the data is basically from a gaussian (one per
+  class is fine), then we can model the *mixture model*, that is we can model
+  the probability of the features given the class.
+- Furthermore we know from the definition of probabilities, that they are
+  tatntamout to the same thing, that is
+#+BEGIN_EXPORT latex
+$$p(y|x)p(x)=p(x,y)=p(x|y)p(y)$$
+$$\frac{p(x|c=1)p(c=1)}{p(x|c=1)p(c)+p(x|c=0)p(c=0)}$$
+#+END_EXPORT
+
+- In effect what we need is Bayes theorem
+- LDA is generative as it models $p(x|c)$ while logistic models $p(c|x)$ that
+  is, it is tantamount to the unlabeled logistic situation
+
+| Generative                          | Discriminative                      |
+|-------------------------------------+-------------------------------------|
+| Better at data asymmetry            | Better for callibrated probabilites |
+| Can add new classes                 | Usually less expensive              |
+| Handle missing or unlabelled data   | Preprocessing is easier             |
+| LDA and Naive Bayes are easy to fit | These need convex optimatization    |
+
+- The representations are typically *not* Gaussians, especially when applied to
+  correlated data like image data
+* Variational Autoencoders
+- When we 'blend' the latent variables together, what we are causing is a
+  reorganization in the latent variable space, which then determines the
+  Gaussians
+- The sampling cannot normally be differentiated, but for a normal distribution,
+  we know that the distribution may be expressed as the sum of the average and
+  sigma times the normal zero-one distribution
+- Try playing with the KL divergence to understand the prior and posterior
+  distribution effects
